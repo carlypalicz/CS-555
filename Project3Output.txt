@@ -1,0 +1,89 @@
+INDIVIDUALS
+--
+
+
+ID: @I1@ Name: Isabelle /Joyce/
+ID: @I2@ Name: Richard /Joyce/
+ID: @I3@ Name: Jeanette /Herman/
+ID: @I4@ Name: Noah /Joyce/
+ID: @I5@ Name: Miranda /Joyce/
+ID: @I6@ Name: Emma /Joyce/
+ID: @I7@ Name: Clare /Joyce/
+ID: @I8@ Name: Sol /Herman/
+ID: @I9@ Name: Lisa /Hilka/
+ID: @I10@ Name: Andy /Herman/
+ID: @I11@ Name: Diana /Herman/
+ID: @I12@ Name: Tammy /Herman/
+ID: @I13@ Name: Eric /Wolfson/
+ID: @I14@ Name: Jacob /Wolfson/
+ID: @I15@ Name: Leah /Wolfson/
+ID: @I16@ Name: Charles /Joyce/
+ID: @I17@ Name: Nancy /Shields/
+ID: @I18@ Name: Shirley /Joyce/
+ID: @I19@ Name: Ann /Pullen/
+ID: @I20@ Name: Ben /Herman/
+ID: @I21@ Name: Caitlin /Herman/
+ID: @I22@ Name: Alexander /Joiner/
+ID: @I23@ Name: Eric /Joiner/
+ID: @I24@ Name: Jessica /Joiner/
+ID: @I25@ Name: Brian /Joiner/
+ID: @I26@ Name: Donna /Joyce/
+ID: @I27@ Name: Charlie /Smith/
+FAMILIES
+--
+
+
+Family ID: @F1@
+Husband:
+ID: @I2@ Name: Richard /Joyce/
+Wife:
+ID: @I3@ Name: Jeanette /Herman/
+--
+Family ID: @F2@
+Husband:
+ID: @I16@ Name: Charles /Joyce/
+Wife:
+ID: @I17@ Name: Nancy /Shields/
+--
+Family ID: @F3@
+Husband:
+ID: @I8@ Name: Sol /Herman/
+Wife:
+ID: @I9@ Name: Lisa /Hilka/
+--
+Family ID: @F4@
+Husband:
+ID: @I10@ Name: Andy /Herman/
+Wife:
+ID: @I19@ Name: Ann /Pullen/
+--
+Family ID: @F5@
+Husband:
+ID: @I27@ Name: Charlie /Smith/
+Wife:
+ID: @I11@ Name: Diana /Herman/
+--
+Family ID: @F6@
+Husband:
+ID: @I22@ Name: Alexander /Joiner/
+Wife:
+ID: @I11@ Name: Diana /Herman/
+--
+Family ID: @F7@
+Husband:
+ID: @I13@ Name: Eric /Wolfson/
+Wife:
+ID: @I12@ Name: Tammy /Herman/
+--
+Family ID: @F8@
+Husband:
+ID: @I16@ Name: Charles /Joyce/
+Wife:
+ID: @I18@ Name: Shirley /Joyce/
+--
+Family ID: @F9@
+Husband:
+ID: @I23@ Name: Eric /Joiner/
+Wife:
+ID: @I24@ Name: Jessica /Joiner/
+--
