@@ -76,9 +76,6 @@ public class Project3{
         //closes buffered reader
         br.close();
 
-        Java.util.collections.sort(ids);
-        Java.util.collections.sort(fams);
-
         System.out.println("INDIVIDUALS\n--\n\n");
         for(int j = 0; j<ids.size(); j++){
             System.out.println("ID: " + ids.get(j) + " Name: "+ nameToId.get(ids.get(j)));
