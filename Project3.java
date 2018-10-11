@@ -6,6 +6,7 @@
 
 import java.io.*;
 import java.util.*;
+import java.text.*;
 public class Project3{
     public static void main(String[] args) throws Exception{
 
@@ -14,6 +15,9 @@ public class Project3{
         
         String line = null;
         String tag, arguments;
+
+        List<Person> individuals = new ArrayList<Person>();
+        List<Family> families = new ArrayList<Family>();
         List<String> ids = new ArrayList<String>();
         Map<String, String> nameToId = new HashMap<String, String>();
         List<String> fams = new ArrayList<String>();
@@ -23,6 +27,8 @@ public class Project3{
         String currentFam = "";
         String husb = "";
         String wife = "";
+        Person currentPerson;
+        Date currentDate;
 
         int i=2;
         while((line=br.readLine()) != null){
@@ -38,17 +44,21 @@ public class Project3{
                 //everything after the second space is arguments
                 arguments = line.substring(i+1);
             }
+
             if(!currentId.equals("")){
                 if(tag.equals("NAME")){
-                    currentName = arguments;
-                    nameToId.put(currentId, currentName);
+                    currentName = arguments.replace("/","");
+                    // nameToId.put(currentId, currentName);
                     currentId = "";
-                    currentName = "";
+                    // currentName = "";
+                }
+                if(tag.equals("DATE")){
+
                 }
             }
             else if(arguments.equals("INDI")){
                 // a new individual
-                ids.add(tag);
+                // ids.add(tag);
                 currentId = tag;
             }
 
