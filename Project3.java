@@ -6,7 +6,18 @@
 
 import java.io.*;
 import java.util.*;
+import java.text.*;
 public class Project3{
+
+    public static Person findIndiv(String id, List<Person> individuals){
+        for(Person p:individuals){
+            if(p.getId().equals(id)){
+                return p;
+            }
+        }
+        return null;
+    }
+
     public static void main(String[] args) throws Exception{
 
         FileReader fr = new FileReader("My-Family.ged");
@@ -14,18 +25,20 @@ public class Project3{
         
         String line = null;
         String tag, arguments;
-        List<String> ids = new ArrayList<String>();
-        Map<String, String> nameToId = new HashMap<String, String>();
-        List<String> fams = new ArrayList<String>();
-        Map<String, String[]> spouses = new HashMap<String, String[]>();
-        String currentId = "";
-        String currentName = "";
-        String currentFam = "";
-        String husb = "";
-        String wife = "";
+        int level;
+        String personFlag;
 
+        List<Person> individuals = new ArrayList<Person>();
+        List<Family> families = new ArrayList<Family>();
+        Person currentPerson = null;
+        Family currentFam = null;
+        Date currentDate;
+        String dateFlag = "";
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd MMM yyyy");
         int i=2;
+
         while((line=br.readLine()) != null){
+            level = line.charAt(0)-'0';
             while(i<line.length()&&line.charAt(i)!=' '){
                 i++;
             }
@@ -38,58 +51,68 @@ public class Project3{
                 //everything after the second space is arguments
                 arguments = line.substring(i+1);
             }
-            if(!currentId.equals("")){
-                if(tag.equals("NAME")){
-                    currentName = arguments;
-                    nameToId.put(currentId, currentName);
-                    currentId = "";
-                    currentName = "";
-                }
-            }
-            else if(arguments.equals("INDI")){
-                // a new individual
-                ids.add(tag);
-                currentId = tag;
-            }
 
-            if(!currentFam.equals("")){
-                if(tag.equals("HUSB")){
-                    husb = arguments;
+            if(level == 0){
+                if(arguments.equals("INDI")){
+                    System.out.println("new individual");
+                    currentPerson = new Person(tag);
+                    individuals.add(currentPerson);
                 }
-                else if(tag.equals("WIFE")){
-                    wife = arguments;
-
-                }
-                if(!husb.equals("") && !wife.equals("")){
-                    String[] temp = {husb, wife};
-                    spouses.put(currentFam, temp);
-                    currentFam = husb = wife = "";
+                else if(arguments.equals("FAM")){
+                    currentFam = new Family(tag);
+                    families.add(currentFam);
                 }
             }
-            else if(arguments.equals("FAM")){
-                fams.add(tag);
-                currentFam = tag;
+            if(currentPerson==null && currentPerson == null){
+                
             }
-
+            else if(tag.equals("NAME")){
+                currentPerson.addName(arguments.replace("/",""));
+            }
+            else if(tag.equals("BIRT")){
+                dateFlag = "b";
+            }
+            else if(tag.equals("DEAT")){
+                dateFlag = "d";
+            }
+            else if(tag.equals("MARR")){
+                dateFlag = "m";
+            }
+            else if(tag.equals("DIV")){
+                dateFlag = "d";
+            }
+            else if(tag.equals("DATE")){
+                currentDate = dateFormatter.parse(arguments);
+                if(dateFlag.equals("b")){
+                    currentPerson.addBirthDate(currentDate);
+                }
+                else if(dateFlag.equals("d")){
+                    currentPerson.kill(currentDate);
+                }
+                else if(dateFlag.equals("m")){
+                    currentFam.addMarriage(currentDate);
+                }
+                else if(dateFlag.equals("d")){
+                    currentFam.divorce(currentDate);
+                }
+            }
+            else if(tag.equals("HUSB")){
+                currentFam.addHusband(findIndiv(arguments, individuals));
+            }
+            else if(tag.equals("WIFE")){
+                currentFam.addWife(findIndiv(arguments, individuals));
+            }
+            else if(tag.equals("CHIL")){
+                currentFam.addChild(findIndiv(arguments, individuals));
+            }
             i = 2;
         }
         //closes buffered reader
         br.close();
 
-        System.out.println("INDIVIDUALS\n--\n\n");
-        for(int j = 0; j<ids.size(); j++){
-            System.out.println("ID: " + ids.get(j) + " Name: "+ nameToId.get(ids.get(j)));
-        }
-        System.out.println("FAMILIES\n--\n\n");
-        for(int j = 0; j<fams.size(); j++){
-            System.out.println("Family ID: "+fams.get(j));
-            String h = spouses.get(fams.get(j))[0];
-            System.out.println("Husband:");
-            System.out.println("ID: "+ h +" Name: "+nameToId.get(h));
-            String w = spouses.get(fams.get(j))[1];
-            System.out.println("Wife:");
-            System.out.println("ID: "+ w +" Name: "+nameToId.get(w));
-            System.out.println("--");
+
+        for(int j = 0; j<individuals.size();j++){
+            System.out.println(individuals.get(j)+"\n");
         }
     }
 }
