@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Person{
@@ -6,10 +7,17 @@ public class Person{
     Date born;
     boolean isDead;
     Date died;
-    public Person(String name, String id, Date d){
-        this.name = name;
+    
+    public Person(String id){
         this.id = id;
-        this.born = d;
+    }
+
+    public void addName(String name){
+        this.name = name;
+    }
+
+    public void addBirthDate(Date d){
+        born = d;
     }
 
     public void kill(Date deathDate){
@@ -37,4 +45,13 @@ public class Person{
         return id;
     }
 
+
+    public String toString(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+        String output = "Name: "+name+"\nID: "+id+"\nBorn: "+sdf.format(born);
+        if(isDead){
+            output+="\nDied: "+sdf.format(died);
+        }
+        return output;
+    }
 }
