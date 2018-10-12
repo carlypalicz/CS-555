@@ -54,7 +54,6 @@ public class Project3{
 
             if(level == 0){
                 if(arguments.equals("INDI")){
-                    System.out.println("new individual");
                     currentPerson = new Person(tag);
                     individuals.add(currentPerson);
                 }
@@ -70,29 +69,29 @@ public class Project3{
                 currentPerson.addName(arguments.replace("/",""));
             }
             else if(tag.equals("BIRT")){
-                dateFlag = "b";
+                dateFlag = "birth";
             }
             else if(tag.equals("DEAT")){
-                dateFlag = "d";
+                dateFlag = "death";
             }
             else if(tag.equals("MARR")){
-                dateFlag = "m";
+                dateFlag = "marriage";
             }
             else if(tag.equals("DIV")){
-                dateFlag = "d";
+                dateFlag = "divorce";
             }
             else if(tag.equals("DATE")){
                 currentDate = dateFormatter.parse(arguments);
-                if(dateFlag.equals("b")){
+                if(dateFlag.equals("birth")){
                     currentPerson.addBirthDate(currentDate);
                 }
-                else if(dateFlag.equals("d")){
+                else if(dateFlag.equals("death")){
                     currentPerson.kill(currentDate);
                 }
-                else if(dateFlag.equals("m")){
+                else if(dateFlag.equals("marriage")){
                     currentFam.addMarriage(currentDate);
                 }
-                else if(dateFlag.equals("d")){
+                else if(dateFlag.equals("divorce")){
                     currentFam.divorce(currentDate);
                 }
             }
@@ -113,6 +112,10 @@ public class Project3{
 
         for(int j = 0; j<individuals.size();j++){
             System.out.println(individuals.get(j)+"\n");
+        }
+
+        for(int j = 0; j<families.size();j++){
+            System.out.println(families.get(j)+"\n");
         }
     }
 }
