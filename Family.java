@@ -56,7 +56,7 @@ public class Family{
         return marriage;
     }
 
-    public void divorce(Date div){
+    public void divorce(Date div) throws Exception{
         isDivorced = true;
         divorce = div;
         if(marriage.after(divorce){
