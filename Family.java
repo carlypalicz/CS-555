@@ -1,4 +1,5 @@
 import java.util.*;
+import java.text.*;
 
 public class Family{
     String id;
@@ -17,15 +18,15 @@ public class Family{
     public void addMarriage(Date d) throws Exception{
         marriage = d;
         if(husband.getBirth().after(marriage)|| wife.getBirth().after(marriage)){
-            // throw new Exception("No birth after marriage");
+            throw new Exception("No birth after marriage");
         }
         Date husDeath = husband.getDeath();
         if(husDeath != null && husDeath.before(marriage)){
-            // throw new Exception("No death before marriage");
+            throw new Exception("No death before marriage");
         }
         Date wifDeath = wife.getDeath();
         if(wifDeath != null && wifDeath.before(marriage)){
-            // throw new Exception("No death before marriage");
+            throw new Exception("No death before marriage");
         }
     }
     public void addHusband(Person husband){
@@ -67,5 +68,18 @@ public class Family{
         else{
             return null;
         }
+    }
+
+    public String toString(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+        String output = "Family ID: "+id+"\nHusband: "+husband.getName()+"\nWife: "+wife.getName()+
+        "\nMarried: "+sdf.format(marriage);
+        if(isDivorced){
+            output+="\nDivorced: "+sdf.format(divorce);
+        }
+        for(Person c:children){
+            output+="\nChild: "+c.getName();
+        }
+        return output;
     }
 }
