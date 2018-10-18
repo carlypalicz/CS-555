@@ -1,7 +1,7 @@
 import java.util.*;
 import java.text.*;
 
-public class Family {
+public class Family{
     String id;
     Person husband;
     Person wife;
@@ -9,91 +9,73 @@ public class Family {
     boolean isDivorced;
     Date divorce;
     List<Person> children;
-
-    public Family(String id) {
+    public Family(String id){
         this.id = id;
         children = new ArrayList<Person>();
         isDivorced = false;
     }
 
-    public void addMarriage(Date d) throws Exception {
+    public void addMarriage(Date d){
         marriage = d;
-        if (husband.getBirth().after(marriage) || wife.getBirth().after(marriage)) {
-            throw new Exception("No birth after marriage");
-        }
-        Date husDeath = husband.getDeath();
-        if (husDeath != null && husDeath.before(marriage)) {
-            throw new Exception("No death before marriage");
-        }
-        Date wifDeath = wife.getDeath();
-        if (wifDeath != null && wifDeath.before(marriage)) {
-            throw new Exception("No death before marriage");
-        }
     }
-
-    public void addHusband(Person husband) {
+    public void addHusband(Person husband){
         this.husband = husband;
     }
-
-    public void addWife(Person wife) {
+    public void addWife(Person wife){
         this.wife = wife;
     }
 
-    public void addChild(Person child) {
+    
+    public void addChild(Person child){
         children.add(child);
     }
-
-    public List<Person> getChildren() {
+    public List<Person> getChildren(){
         return children;
     }
 
-    public Person getHusband() {
+    public Person getHusband(){
         return husband;
     }
 
-    public Person getWife() {
+    public Person getWife(){
         return wife;
     }
 
-    public Date getMarriage() {
+    public Date getMarriage(){
         return marriage;
     }
 
-    public void divorce(Date div) throws Exception {
+    public void divorce(Date div){
         isDivorced = true;
         divorce = div;
-        if (marriage.after(divorce)) {
-            throw new Exception("No marriage after divorce");
-        }
-        Date husDeath = husband.getDeath();
-        if (husDeath != null && husDeath.before(divorce)) {
-            throw new Exception("No death before divorce");
-        }
-        Date wifDeath = wife.getDeath();
-        if (wifDeath != null && wifDeath.before(divorce)) {
-            throw new Exception("No death before divorce");
-        }
     }
 
-    public Date getDivorce() {
-        if (isDivorced) {
+    public Date getDivorce(){
+        if(isDivorced){
             return divorce;
-        } else {
+        }
+        else{
             return null;
         }
     }
 
+    public String getId(){
+        return id;
+    }
+
     public String toString(){
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
-        String output = "Family ID: "+id+"\nHusband: "+husband.getName()+"\nWife: "+wife.getName()+
-        "\nMarried: "+sdf.format(marriage);
+        String output = "Family ID: "+id+"  Husband: "+husband.getName()+"  Wife: "+wife.getName()+
+        "  Married: "+sdf.format(marriage);
         if(isDivorced){
-            output+="\nDivorced: "+sdf.format(divorce);
+            output+="  Divorced: "+sdf.format(divorce);
+        }
+        if(children.size()!=0){
+            output+="  Children: ";
         }
         for(Person c:children){
-            output+="\nChild: "+c.getName();
+            output+=c.getName()+", ";
         }
         return output;
     }
-}                
-                                 
+}
