@@ -21,6 +21,9 @@ public class Person{
     }
 
     public void kill(Date deathDate){
+        if (deathDate.before(born)) {
+            throw new Exception("You cannot die before you were born without a time travel paradox");
+        }
         isDead = true;
         died = deathDate;
     }
