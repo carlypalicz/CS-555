@@ -20,7 +20,7 @@ public class Person{
         born = d;
     }
 
-    public void kill(Date deathDate){
+    public void kill(Date deathDate) throws Exception{
         if (deathDate.before(born)) {
             throw new Exception("You cannot die before you were born without a time travel paradox");
         }
