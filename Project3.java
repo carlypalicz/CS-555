@@ -1,7 +1,7 @@
 /**
- * Isabelle Joyce
- * I pledge my honor that I have abided by the Stevens Honor System
- * 9/19/2018
+ * Isabelle Joyce, Carly Palicz, Julia Martin
+ * We pledge our honor that we have abided by the Stevens Honor System
+ * Updated 10/17/2018
  */
 
 import java.io.*;
