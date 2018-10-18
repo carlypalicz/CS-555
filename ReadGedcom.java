@@ -74,6 +74,11 @@ public class ReadGedcom{
                 }
                 else if(tag.equals("DATE")){
                     currentDate = dateFormatter.parse(arguments);
+                    // carly - currentDate is date ur adding and nowDate is the present actual day
+                    Date nowDate = new Date();
+                    if (nowDate.before(currentDate)) {
+                        throw new Exception("A date cannot take place in the future");
+                    }
                     if(dateFlag.equals("birth")){
                         currentPerson.addBirthDate(currentDate);
                     }
