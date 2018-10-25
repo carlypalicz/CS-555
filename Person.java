@@ -1,5 +1,8 @@
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Calendar;
+import java.util.Locale;
+import static java.util.Calendar.*;
 
 public class Person {
     String name;
@@ -48,6 +51,21 @@ public class Person {
 
     public String getId() {
         return id;
+    }
+
+    public int getAgeAtDate(Date check){
+        if(check.before(born)){
+            return -1;
+        }
+        Calendar birthdate = Calendar.getInstance(Locale.US);
+        birthdate.setTime(born);
+        Calendar checkdate = getInstance(Locale.US);
+        checkdate.setTime(check);
+        int age = checkdate.get(YEAR) - birthdate.get(YEAR);
+        if(birthdate.get(MONTH) > checkdate.get(MONTH) || (checkdate.get(MONTH) == birthdate.get(MONTH) && birthdate.get(DATE)>checkdate.get(DATE))){
+            age--;
+        }
+        return age;
     }
 
     public String toString() {
