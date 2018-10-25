@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.*;
 import java.text.*;
+import java.util.concurrent.TimeUnit;
 
 public class FindErrors {
     public static void birthBeforeMarriage(List<String> errors, List<Family> families) {
@@ -135,6 +136,39 @@ public class FindErrors {
                     errors.add(errorMessage);
                     errorMessage = "";
                 }
+            }
+        }
+    }
+    public static void siblingSpacing(List<String> errors, List<Family> families){
+        List<Person> children = null;
+        int EIGHT_MONTHS_IN_DAYS = 243;
+        String errorMessage = "";
+        for(Family fam:families){
+            children = fam.getChildren();
+            for(Person child1:children){
+                for(Person child2: children){
+                    long diffInMillis = Math.abs(child1.getBirth().getTime()-child2.getBirth().getTime());
+                    long timeDiff = TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
+                        if(timeDiff>2 && timeDiff<EIGHT_MONTHS_IN_DAYS){
+                            errorMessage = "Birth date of " + child1.getName() + " ("+child1.getId()
+                            + ") is too close to birth date of " + child2.getName() + " ("+child2.getId() + ") in Family "+fam.getId();
+                            errors.add(errorMessage);
+                            errorMessage = "";
+                        }
+                }
+            }
+        }
+    }
+
+    public static void maximumSiblings(List<String> errors, List<Family> families){
+        List<Person> children = null;
+        String errorMessage = "";
+        for(Family fam: families){
+            children = fam.getChildren();
+            if(children.size()>15){
+                errorMessage = "Family "+fam.getId()+" has more than 15 children";
+                errors.add(errorMessage);
+                errorMessage = "";
             }
         }
     }
