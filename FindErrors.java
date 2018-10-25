@@ -172,4 +172,42 @@ public class FindErrors {
             }
         }
     }
+
+    public static void LessThanHundredFifty(List<String> errors, List<Person> individuals){
+        String errorMessage = "";
+        Date currentDate = new Date();
+        int age;
+        for(Person p:individuals){
+            if(p.isDead){
+                age = p.getAgeAtDate(p.getDeath());
+            }
+            else{
+                age = p.getAgeAtDate(currentDate);
+            }
+            if(age>150){
+                errorMessage = "Individual "+p.getName()+" ("+p.getId()+") is over 150 years old";
+                errors.add(errorMessage);
+                errorMessage = "";
+            }
+        }
+    }
+
+    public static void MarriageAfterFourteen(List<String> errors, List<Family> families){
+        Person husband, wife = null;
+        Date marriage = null;
+        String errorMessage;
+        for(Family fam: families){
+            husband = fam.getHusband();
+            wife = fam.getWife();
+            marriage = fam.getMarriage();
+            if(husband.getAgeAtDate(marriage)<14){
+                errorMessage = "Individual "+husband.getName()+" ("+husband.getId()+") was under 14 at the date of his marriage in Family "+fam.getId();
+                errors.add(errorMessage);
+            }
+            if(wife.getAgeAtDate(marriage)<14){
+                errorMessage = "Individual "+wife.getName()+" ("+wife.getId()+") was under 14 at the date of her marriage in Family "+fam.getId();
+                errors.add(errorMessage);
+            }
+        }
+    }
 }
