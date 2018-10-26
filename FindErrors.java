@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 import java.text.*;
+import java.util.concurrent.TimeUnit;
 
 public class FindErrors {
     public static void birthBeforeMarriage(List<String> errors, List<Family> families) {
@@ -47,6 +47,55 @@ public class FindErrors {
                         + ") occurs before her marriage date in family " + fam.getId();
                 errors.add(errorMessage);
                 errorMessage = "";
+            }
+        }
+    }
+
+    public static void marriageBeforeDivorce(List<String> errors, List<Family> families){
+        String errorMessage = "";
+        Date marriage, divorce;
+        Person husband, wife = null;
+        for (Family fam : families) {
+            marriage = fam.getMarriage();
+            divorce = fam.getDivorce();
+            husband = fam.getHusband();
+            wife = fam.getWife();
+            if(divorce != null && marriage != null && divorce.before(marriage)){
+                errorMessage = "Divorce of "+ husband.getName() + " and " + wife.getName() + " (" + husband.getId() 
+                + " and " + wife.getId() + ") occurs before their marriage date in family " + fam.getId();
+                errors.add(errorMessage);
+                errorMessage = "";
+            }
+        }
+    }
+
+    public static void divorceBeforeDeath(List<String> errors, List<Family> families){
+        Person husband, wife = null;
+        Date death = null;
+        String errorMessage = "";
+        Date marriage, divorce;
+        for (Family fam : families) {
+            husband = fam.getHusband();
+            wife = fam.getWife();
+            marriage = fam.getMarriage();
+            divorce = fam.getDivorce();
+
+            if(marriage != null && divorce != null){
+                death = husband.getDeath();
+                if (death != null && death.before(fam.getDivorce())) {
+                    errorMessage = "Death date of " + husband.getName() + " (" + husband.getId()
+                            + ") occurs before his divorce date in family " + fam.getId();
+                    errors.add(errorMessage);
+                    errorMessage = "";
+                }
+
+                death = wife.getDeath();
+                if (death != null && death.before(fam.getDivorce())) {
+                    errorMessage = "Death date of " + wife.getName() + " (" + wife.getId()
+                            + ") occurs before her divorce date in family " + fam.getId();
+                    errors.add(errorMessage);
+                    errorMessage = "";
+                }
             }
         }
     }
@@ -155,6 +204,77 @@ public class FindErrors {
                         errorMessage = "";
                     }
                 }
+            }
+        }
+    }
+    public static void siblingSpacing(List<String> errors, List<Family> families){
+        List<Person> children = null;
+        int EIGHT_MONTHS_IN_DAYS = 243;
+        String errorMessage = "";
+        for(Family fam:families){
+            children = fam.getChildren();
+            for(Person child1:children){
+                for(Person child2: children){
+                    long diffInMillis = Math.abs(child1.getBirth().getTime()-child2.getBirth().getTime());
+                    long timeDiff = TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
+                        if(timeDiff>2 && timeDiff<EIGHT_MONTHS_IN_DAYS){
+                            errorMessage = "Birth date of " + child1.getName() + " ("+child1.getId()
+                            + ") is too close to birth date of " + child2.getName() + " ("+child2.getId() + ") in Family "+fam.getId();
+                            errors.add(errorMessage);
+                            errorMessage = "";
+                        }
+                }
+            }
+        }
+    }
+
+    public static void maximumSiblings(List<String> errors, List<Family> families){
+        List<Person> children = null;
+        String errorMessage = "";
+        for(Family fam: families){
+            children = fam.getChildren();
+            if(children.size()>15){
+                errorMessage = "Family "+fam.getId()+" has more than 15 children";
+                errors.add(errorMessage);
+                errorMessage = "";
+            }
+        }
+    }
+
+    public static void LessThanHundredFifty(List<String> errors, List<Person> individuals){
+        String errorMessage = "";
+        Date currentDate = new Date();
+        int age;
+        for(Person p:individuals){
+            if(p.isDead){
+                age = p.getAgeAtDate(p.getDeath());
+            }
+            else{
+                age = p.getAgeAtDate(currentDate);
+            }
+            if(age>150){
+                errorMessage = "Individual "+p.getName()+" ("+p.getId()+") is over 150 years old";
+                errors.add(errorMessage);
+                errorMessage = "";
+            }
+        }
+    }
+
+    public static void MarriageAfterFourteen(List<String> errors, List<Family> families){
+        Person husband, wife = null;
+        Date marriage = null;
+        String errorMessage;
+        for(Family fam: families){
+            husband = fam.getHusband();
+            wife = fam.getWife();
+            marriage = fam.getMarriage();
+            if(husband.getAgeAtDate(marriage)<14){
+                errorMessage = "Individual "+husband.getName()+" ("+husband.getId()+") was under 14 at the date of his marriage in Family "+fam.getId();
+                errors.add(errorMessage);
+            }
+            if(wife.getAgeAtDate(marriage)<14){
+                errorMessage = "Individual "+wife.getName()+" ("+wife.getId()+") was under 14 at the date of her marriage in Family "+fam.getId();
+                errors.add(errorMessage);
             }
         }
     }

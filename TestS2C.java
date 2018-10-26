@@ -13,6 +13,7 @@ public class TestS2C {
     public static void main(String[] args) throws Exception {
         String file1 = "TestFiles/testerfam.ged";
         String file2 = "TestFiles/sprint2c1.ged";
+        String file3 = "TestFiles/sprint2c2.ged";
         List<Person> individuals = new ArrayList<Person>();
         List<Family> families = new ArrayList<Family>();
         List<Date> dates = new ArrayList<Date>();
@@ -36,6 +37,20 @@ public class TestS2C {
 
         System.out.println("\nCase 2:"+file2+"\nExpected Behavior: 1 Error, born after death of mother");
         ReadGedcom.parse(file2, individuals, families, dates);
+        FindErrors.birthBeforeDeathOfParents(errors, families);
+
+        System.out.println("Errors Found: ");
+        for (int j = 0; j < errors.size(); j++) {
+            System.out.println("E" + j + ": " + errors.get(j));
+        }
+
+        individuals.clear();
+        families.clear();
+        dates.clear();
+        errors.clear();
+
+        System.out.println("\nCase 3:"+file3+"\nExpected Behavior: 1 Error, born over 9 months after death of father");
+        ReadGedcom.parse(file3, individuals, families, dates);
         FindErrors.birthBeforeDeathOfParents(errors, families);
 
         System.out.println("Errors Found: ");
