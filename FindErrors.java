@@ -73,23 +73,29 @@ public class FindErrors {
         Person husband, wife = null;
         Date death = null;
         String errorMessage = "";
+        Date marriage, divorce;
         for (Family fam : families) {
             husband = fam.getHusband();
             wife = fam.getWife();
-            death = husband.getDeath();
-            if (death != null && death.before(fam.getDivorce())) {
-                errorMessage = "Death date of " + husband.getName() + " (" + husband.getId()
-                        + ") occurs before his divorce date in family " + fam.getId();
-                errors.add(errorMessage);
-                errorMessage = "";
-            }
+            marriage = fam.getMarriage();
+            divorce = fam.getDivorce();
 
-            death = wife.getDeath();
-            if (death != null && death.before(fam.getDivorce())) {
-                errorMessage = "Death date of " + wife.getName() + " (" + wife.getId()
-                        + ") occurs before her divorce date in family " + fam.getId();
-                errors.add(errorMessage);
-                errorMessage = "";
+            if(marriage != null && divorce != null){
+                death = husband.getDeath();
+                if (death != null && death.before(fam.getDivorce())) {
+                    errorMessage = "Death date of " + husband.getName() + " (" + husband.getId()
+                            + ") occurs before his divorce date in family " + fam.getId();
+                    errors.add(errorMessage);
+                    errorMessage = "";
+                }
+
+                death = wife.getDeath();
+                if (death != null && death.before(fam.getDivorce())) {
+                    errorMessage = "Death date of " + wife.getName() + " (" + wife.getId()
+                            + ") occurs before her divorce date in family " + fam.getId();
+                    errors.add(errorMessage);
+                    errorMessage = "";
+                }
             }
         }
     }

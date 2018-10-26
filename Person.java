@@ -19,16 +19,12 @@ public class Person {
         this.name = name;
     }
 
-    public void addBirthDate(Date d) {
-        born = d;
+    public void addBirthDate(Date birthday) {
+        born = birthday;
     }
 
-    public void kill(Date deathDate) throws Exception {
-        /*
-         * if (deathDate.before(born)) { throw new
-         * Exception("You cannot die before you were born without a time travel paradox"
-         * ); }
-         */
+    public void kill(Date deathDate){
+        
         isDead = true;
         died = deathDate;
     }

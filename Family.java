@@ -16,8 +16,8 @@ public class Family {
         isDivorced = false;
     }
 
-    public void addMarriage(Date d) {
-        marriage = d;
+    public void addMarriage(Date marriageDate) {
+        marriage = marriageDate;
     }
 
     public void addHusband(Person husband) {
@@ -48,9 +48,9 @@ public class Family {
         return marriage;
     }
 
-    public void divorce(Date div){
+    public void divorce(Date divorceDate){
         isDivorced = true;
-        divorce = div;
+        divorce = divorceDate;
     }
 
     public Date getDivorce() {
@@ -78,6 +78,6 @@ public class Family {
         for (Person c : children) {
             output += c.getName() + ", ";
         }
-        return output;
+        return output.substring(0,(output.length()-2));
     }
 }
