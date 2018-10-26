@@ -48,20 +48,9 @@ public class Family {
         return marriage;
     }
 
-    public void divorce(Date div) throws Exception {
+    public void divorce(Date div){
         isDivorced = true;
         divorce = div;
-        if (marriage.after(divorce)) {
-            throw new Exception("No marriage after divorce");
-        }
-        Date husDeath = husband.getDeath();
-        if (husDeath != null && husDeath.before(divorce)) {
-            throw new Exception("No death before divorce");
-        }
-        Date wifDeath = wife.getDeath();
-        if (wifDeath != null && wifDeath.before(divorce)) {
-            throw new Exception("No death before divorce");
-        }
     }
 
     public Date getDivorce() {

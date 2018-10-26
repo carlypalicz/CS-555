@@ -51,6 +51,49 @@ public class FindErrors {
         }
     }
 
+    public static void marriageBeforeDivorce(List<String> errors, List<Family> families){
+        String errorMessage = "";
+        Date marriage, divorce;
+        Person husband, wife = null;
+        for (Family fam : families) {
+            marriage = fam.getMarriage();
+            divorce = fam.getDivorce();
+            husband = fam.getHusband();
+            wife = fam.getWife();
+            if(divorce != null && marriage != null && divorce.before(marriage)){
+                errorMessage = "Divorce of "+ husband.getName() + " and " + wife.getName() + " (" + husband.getId() 
+                + " and " + wife.getId() + ") occurs before their marriage date in family " + fam.getId();
+                errors.add(errorMessage);
+                errorMessage = "";
+            }
+        }
+    }
+
+    public static void divorceBeforeDeath(List<String> errors, List<Family> families){
+        Person husband, wife = null;
+        Date death = null;
+        String errorMessage = "";
+        for (Family fam : families) {
+            husband = fam.getHusband();
+            wife = fam.getWife();
+            death = husband.getDeath();
+            if (death != null && death.before(fam.getDivorce())) {
+                errorMessage = "Death date of " + husband.getName() + " (" + husband.getId()
+                        + ") occurs before his divorce date in family " + fam.getId();
+                errors.add(errorMessage);
+                errorMessage = "";
+            }
+
+            death = wife.getDeath();
+            if (death != null && death.before(fam.getDivorce())) {
+                errorMessage = "Death date of " + wife.getName() + " (" + wife.getId()
+                        + ") occurs before her divorce date in family " + fam.getId();
+                errors.add(errorMessage);
+                errorMessage = "";
+            }
+        }
+    }
+
     public static void dateBeforeCurrentDate(List<String> errors, List<Date> dates) {
         String errorMessage = "";
         for (Date newDate : dates) {

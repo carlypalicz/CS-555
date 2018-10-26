@@ -21,6 +21,8 @@ public class Project3 {
         ReadGedcom.parse(fileName, individuals, families, dates);
         FindErrors.birthBeforeMarriage(errors, families);
         FindErrors.marriageBeforeDeath(errors, families);
+        FindErrors.marriageBeforeDivorce(errors, families);
+        FindErrors.divorceBeforeDeath(errors, families);
         FindErrors.dateBeforeCurrentDate(errors, dates); // new
         FindErrors.birthBeforeDeath(errors, individuals); // new
         FindErrors.birthBeforeMarriageOfParents(errors, families); // new
