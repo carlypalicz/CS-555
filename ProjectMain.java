@@ -12,7 +12,7 @@ import java.text.*;
 public class ProjectMain {
 
     public static void main(String[] args) throws Exception {
-        String fileName = "TestFiles/sprint3a1.ged";
+        String fileName = "TestFiles/Sprint3AcceptanceTest.ged";
         List<Person> individuals = new ArrayList<Person>();
         List<Family> families = new ArrayList<Family>();
         List<Date> dates = new ArrayList<Date>(); // new
