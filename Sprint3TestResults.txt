@@ -1,0 +1,78 @@
+Information found in TestFiles/Sprint3AcceptanceTest.ged
+-----
+
+Individuals:
+ID: @I1@ Name: Matt Smith  Born: 01 Jan 1800  Died: 01 Jan 2020
+ID: @I2@ Name: Maddy Smoth  Born: 01 Jan 1785  Died: 01 Jan 1770
+ID: @I3@ Name: Mikey Smith  Born: 01 Jan 1780 Current Age: 238
+ID: @I4@ Name: Molly Smith  Born: 01 Mar 1780 Current Age: 238
+ID: @I5@ Name: Molly Smith  Born: 01 Mar 1780 Current Age: 238
+ID: @I6@ Name: A Smith  Born: 04 Jan 2000 Current Age: 18
+ID: @I7@ Name: B Smith  Born: 04 Jan 2000 Current Age: 18
+ID: @I8@ Name: C Smith  Born: 04 Jan 2000 Current Age: 18
+ID: @I9@ Name: D Smith  Born: 04 Jan 2000 Current Age: 18
+ID: @I10@ Name: E Smith  Born: 04 Jan 2000 Current Age: 18
+ID: @I11@ Name: F Smith  Born: 04 Jan 2000 Current Age: 18
+ID: @I12@ Name: G Smith  Born: 04 Jan 2000 Current Age: 18
+ID: @I13@ Name: H Smith  Born: 04 Jan 2000 Current Age: 18
+ID: @I14@ Name: I Smith  Born: 04 Jan 2000 Current Age: 18
+ID: @I15@ Name: J Smith  Born: 04 Jan 2000 Current Age: 18
+ID: @I16@ Name: K Smith  Born: 04 Jan 2000 Current Age: 18
+ID: @I17@ Name: L Smith  Born: 04 Jan 2000 Current Age: 18
+ID: @I18@ Name: M Smith  Born: 04 Jan 2000 Current Age: 18
+
+Families:
+Family ID: @F1@  Husband: Matt Smith  Wife: Maddy Smoth  Married: 02 Jan 1795  Divorced: 02 Jan 1794  Children: Mikey Smith, Molly Smith, Molly Smith, A Smith, B Smith, C Smith, D Smith, E Smith, F Smith, G Smith, H Smith, I Smith, J Smith, K Smith, L Smith, M Smith
+
+Errors:
+E0: Birth date of Matt Smith (@I1@) occurs after his marriage date in family @F1@
+E1: Death date of Maddy Smoth (@I2@) occurs before her marriage date in family @F1@
+E2: Divorce of Matt Smith and Maddy Smoth (@I1@ and @I2@) occurs before their marriage date in family @F1@
+E3: Death date of Maddy Smoth (@I2@) occurs before her divorce date in family @F1@
+E4: The date Wed Jan 01 00:00:00 EST 2020 takes place in the future.
+E5: Death Date of Maddy Smoth (@I2@) occurs before birth date
+E6: Birth Date of Mikey Smith (@I3@) occurs before marriage of Maddy Smoth (@I2@) and Matt Smith (@I1@)
+E7: Birth Date of Molly Smith (@I4@) occurs before marriage of Maddy Smoth (@I2@) and Matt Smith (@I1@)
+E8: Birth Date of Molly Smith (@I5@) occurs before marriage of Maddy Smoth (@I2@) and Matt Smith (@I1@)
+E9: Birth Date of A Smith (@I6@) occurs too far after the divorce of Maddy Smoth (@I2@) and Matt Smith (@I1@)
+E10: Birth Date of B Smith (@I7@) occurs too far after the divorce of Maddy Smoth (@I2@) and Matt Smith (@I1@)
+E11: Birth Date of C Smith (@I8@) occurs too far after the divorce of Maddy Smoth (@I2@) and Matt Smith (@I1@)
+E12: Birth Date of D Smith (@I9@) occurs too far after the divorce of Maddy Smoth (@I2@) and Matt Smith (@I1@)
+E13: Birth Date of E Smith (@I10@) occurs too far after the divorce of Maddy Smoth (@I2@) and Matt Smith (@I1@)
+E14: Birth Date of F Smith (@I11@) occurs too far after the divorce of Maddy Smoth (@I2@) and Matt Smith (@I1@)
+E15: Birth Date of G Smith (@I12@) occurs too far after the divorce of Maddy Smoth (@I2@) and Matt Smith (@I1@)
+E16: Birth Date of H Smith (@I13@) occurs too far after the divorce of Maddy Smoth (@I2@) and Matt Smith (@I1@)
+E17: Birth Date of I Smith (@I14@) occurs too far after the divorce of Maddy Smoth (@I2@) and Matt Smith (@I1@)
+E18: Birth Date of J Smith (@I15@) occurs too far after the divorce of Maddy Smoth (@I2@) and Matt Smith (@I1@)
+E19: Birth Date of K Smith (@I16@) occurs too far after the divorce of Maddy Smoth (@I2@) and Matt Smith (@I1@)
+E20: Birth Date of L Smith (@I17@) occurs too far after the divorce of Maddy Smoth (@I2@) and Matt Smith (@I1@)
+E21: Birth Date of M Smith (@I18@) occurs too far after the divorce of Maddy Smoth (@I2@) and Matt Smith (@I1@)
+E22: Birth Date of Mikey Smith (@I3@) occurs before death of Maddy Smoth (@I2@)
+E23: Birth Date of Molly Smith (@I4@) occurs before death of Maddy Smoth (@I2@)
+E24: Birth Date of Molly Smith (@I5@) occurs before death of Maddy Smoth (@I2@)
+E25: Birth Date of A Smith (@I6@) occurs before death of Maddy Smoth (@I2@)
+E26: Birth Date of B Smith (@I7@) occurs before death of Maddy Smoth (@I2@)
+E27: Birth Date of C Smith (@I8@) occurs before death of Maddy Smoth (@I2@)
+E28: Birth Date of D Smith (@I9@) occurs before death of Maddy Smoth (@I2@)
+E29: Birth Date of E Smith (@I10@) occurs before death of Maddy Smoth (@I2@)
+E30: Birth Date of F Smith (@I11@) occurs before death of Maddy Smoth (@I2@)
+E31: Birth Date of G Smith (@I12@) occurs before death of Maddy Smoth (@I2@)
+E32: Birth Date of H Smith (@I13@) occurs before death of Maddy Smoth (@I2@)
+E33: Birth Date of I Smith (@I14@) occurs before death of Maddy Smoth (@I2@)
+E34: Birth Date of J Smith (@I15@) occurs before death of Maddy Smoth (@I2@)
+E35: Birth Date of K Smith (@I16@) occurs before death of Maddy Smoth (@I2@)
+E36: Birth Date of L Smith (@I17@) occurs before death of Maddy Smoth (@I2@)
+E37: Birth Date of M Smith (@I18@) occurs before death of Maddy Smoth (@I2@)
+E38: Birth date of Mikey Smith (@I3@) is too close to birth date of Molly Smith (@I4@) in Family @F1@
+E39: Birth date of Mikey Smith (@I3@) is too close to birth date of Molly Smith (@I5@) in Family @F1@
+E40: Birth date of Molly Smith (@I4@) is too close to birth date of Mikey Smith (@I3@) in Family @F1@
+E41: Birth date of Molly Smith (@I5@) is too close to birth date of Mikey Smith (@I3@) in Family @F1@
+E42: Family @F1@ has more than 15 children
+E43: Individual Matt Smith (@I1@) is over 150 years old
+E44: Individual Mikey Smith (@I3@) is over 150 years old
+E45: Individual Molly Smith (@I4@) is over 150 years old
+E46: Individual Molly Smith (@I5@) is over 150 years old
+E47: Individual Matt Smith (@I1@) was under 14 at the date of his marriage in Family @F1@
+E48: Individual Maddy Smoth (@I2@) was under 14 at the date of her marriage in Family @F1@
+E49: Child Molly Smith (@I4@) and child Molly Smith (@I5@) share the same first name and the same birthday, Wed Mar 01 00:00:00 EST 1780
+E50: Child Molly Smith (@I5@) and child Molly Smith (@I4@) share the same first name and the same birthday, Wed Mar 01 00:00:00 EST 1780
