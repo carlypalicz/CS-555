@@ -11,14 +11,14 @@ public class FindErrors {
             husband = fam.getHusband();
             wife = fam.getWife();
             if (husband.getBirth().after(fam.getMarriage())) {
-                errorMessage = "Birth date of " + husband.getName() + " (" + husband.getId()
+                errorMessage = "ERROR: US02: Birth date of " + husband.getName() + " (" + husband.getId()
                         + ") occurs after his marriage date in family " + fam.getId();
                 errors.add(errorMessage);
                 errorMessage = "";
             }
 
             if (wife.getBirth().after(fam.getMarriage())) {
-                errorMessage = "Birth date of " + wife.getName() + " (" + wife.getId()
+                errorMessage = "ERROR: US02: Birth date of " + wife.getName() + " (" + wife.getId()
                         + ") occurs after her marriage date in family " + fam.getId();
                 errors.add(errorMessage);
                 errorMessage = "";
@@ -35,7 +35,7 @@ public class FindErrors {
             wife = fam.getWife();
             death = husband.getDeath();
             if (death != null && death.before(fam.getMarriage())) {
-                errorMessage = "Death date of " + husband.getName() + " (" + husband.getId()
+                errorMessage = "ERROR: US05: Death date of " + husband.getName() + " (" + husband.getId()
                         + ") occurs before his marriage date in family " + fam.getId();
                 errors.add(errorMessage);
                 errorMessage = "";
@@ -43,7 +43,7 @@ public class FindErrors {
 
             death = wife.getDeath();
             if (death != null && death.before(fam.getMarriage())) {
-                errorMessage = "Death date of " + wife.getName() + " (" + wife.getId()
+                errorMessage = "ERROR: US05: Death date of " + wife.getName() + " (" + wife.getId()
                         + ") occurs before her marriage date in family " + fam.getId();
                 errors.add(errorMessage);
                 errorMessage = "";
@@ -61,8 +61,9 @@ public class FindErrors {
             husband = fam.getHusband();
             wife = fam.getWife();
             if (divorce != null && marriage != null && divorce.before(marriage)) {
-                errorMessage = "Divorce of " + husband.getName() + " and " + wife.getName() + " (" + husband.getId()
-                        + " and " + wife.getId() + ") occurs before their marriage date in family " + fam.getId();
+                errorMessage = "ERROR: US04: Divorce of " + husband.getName() + " and " + wife.getName() + " ("
+                        + husband.getId() + " and " + wife.getId() + ") occurs before their marriage date in family "
+                        + fam.getId();
                 errors.add(errorMessage);
                 errorMessage = "";
             }
@@ -83,7 +84,7 @@ public class FindErrors {
             if (marriage != null && divorce != null) {
                 death = husband.getDeath();
                 if (death != null && death.before(fam.getDivorce())) {
-                    errorMessage = "Death date of " + husband.getName() + " (" + husband.getId()
+                    errorMessage = "ERROR: US06: Death date of " + husband.getName() + " (" + husband.getId()
                             + ") occurs before his divorce date in family " + fam.getId();
                     errors.add(errorMessage);
                     errorMessage = "";
@@ -91,7 +92,7 @@ public class FindErrors {
 
                 death = wife.getDeath();
                 if (death != null && death.before(fam.getDivorce())) {
-                    errorMessage = "Death date of " + wife.getName() + " (" + wife.getId()
+                    errorMessage = "ERROR: US06: Death date of " + wife.getName() + " (" + wife.getId()
                             + ") occurs before her divorce date in family " + fam.getId();
                     errors.add(errorMessage);
                     errorMessage = "";
@@ -105,7 +106,7 @@ public class FindErrors {
         for (Date newDate : dates) {
             Date todaysDate = new Date();
             if (todaysDate.before(newDate)) {
-                errorMessage = "The date " + newDate + " takes place in the future.";
+                errorMessage = "ERROR: US01: The date " + newDate + " takes place in the future.";
                 errors.add(errorMessage);
                 errorMessage = "";
             }
@@ -122,7 +123,7 @@ public class FindErrors {
             death = person.getDeath();
 
             if (death != null && death.before(birth)) {
-                errorMessage = "Death Date of " + person.getName() + " (" + person.getId() + ")"
+                errorMessage = "ERROR: US03: Death Date of " + person.getName() + " (" + person.getId() + ")"
                         + " occurs before birth date";
                 errors.add(errorMessage);
                 errorMessage = "";
@@ -151,14 +152,14 @@ public class FindErrors {
                     long diffInMillis = Math.abs(childsBirth.getTime() - divorce.getTime());
                     long timeDiff = TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
                     if (timeDiff > NINE_MONTHS_IN_DAYS) {
-                        errorMessage = "Birth Date of " + child.getName() + " (" + child.getId()
+                        errorMessage = "ERROR: US08: Birth Date of " + child.getName() + " (" + child.getId()
                                 + ") occurs too far after the divorce of " + wife.getName() + " (" + wife.getId()
                                 + ") and " + husband.getName() + " (" + husband.getId() + ")";
                         errors.add(errorMessage);
                         errorMessage = "";
                     }
                 } else if (childsBirth.before(marriage)) {
-                    errorMessage = "Birth Date of " + child.getName() + " (" + child.getId()
+                    errorMessage = "ERROR: US08: Birth Date of " + child.getName() + " (" + child.getId()
                             + ") occurs before marriage of " + wife.getName() + " (" + wife.getId() + ") and "
                             + husband.getName() + " (" + husband.getId() + ")";
                     errors.add(errorMessage);
@@ -186,7 +187,7 @@ public class FindErrors {
             for (Person child : children) {
                 childsBirth = child.getBirth();
                 if ((momDeath != null) && (momDeath.before(childsBirth))) {
-                    errorMessage = "Birth Date of " + child.getName() + " (" + child.getId()
+                    errorMessage = "ERROR: US09: Birth Date of " + child.getName() + " (" + child.getId()
                             + ") occurs before death of " + wife.getName() + " (" + wife.getId() + ")";
                     errors.add(errorMessage);
                     errorMessage = "";
@@ -197,7 +198,7 @@ public class FindErrors {
                     long timeDiff = TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
                     if (timeDiff > NINE_MONTHS_IN_DAYS) {
 
-                        errorMessage = "Birth Date of " + child.getName() + " (" + child.getId()
+                        errorMessage = "ERROR: US09: Birth Date of " + child.getName() + " (" + child.getId()
                                 + ") occurs more than 9 months after death of " + husband.getName() + " ("
                                 + husband.getId() + ")";
                         errors.add(errorMessage);
@@ -219,7 +220,7 @@ public class FindErrors {
                     long diffInMillis = Math.abs(child1.getBirth().getTime() - child2.getBirth().getTime());
                     long timeDiff = TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
                     if (timeDiff > 2 && timeDiff < EIGHT_MONTHS_IN_DAYS) {
-                        errorMessage = "Birth date of " + child1.getName() + " (" + child1.getId()
+                        errorMessage = "ERROR: US13: Birth date of " + child1.getName() + " (" + child1.getId()
                                 + ") is too close to birth date of " + child2.getName() + " (" + child2.getId()
                                 + ") in Family " + fam.getId();
                         errors.add(errorMessage);
@@ -236,7 +237,7 @@ public class FindErrors {
         for (Family fam : families) {
             children = fam.getChildren();
             if (children.size() > 15) {
-                errorMessage = "Family " + fam.getId() + " has more than 15 children";
+                errorMessage = "ERROR: US15: Family " + fam.getId() + " has more than 15 children";
                 errors.add(errorMessage);
                 errorMessage = "";
             }
@@ -254,7 +255,7 @@ public class FindErrors {
                 age = p.getAgeAtDate(currentDate);
             }
             if (age > 150) {
-                errorMessage = "Individual " + p.getName() + " (" + p.getId() + ") is over 150 years old";
+                errorMessage = "ERROR: US07: Individual " + p.getName() + " (" + p.getId() + ") is over 150 years old";
                 errors.add(errorMessage);
                 errorMessage = "";
             }
@@ -270,13 +271,13 @@ public class FindErrors {
             wife = fam.getWife();
             marriage = fam.getMarriage();
             if (husband.getAgeAtDate(marriage) < 14) {
-                errorMessage = "Individual " + husband.getName() + " (" + husband.getId()
+                errorMessage = "ERROR: US10: Individual " + husband.getName() + " (" + husband.getId()
                         + ") was under 14 at the date of his marriage in Family " + fam.getId();
                 errors.add(errorMessage);
                 errorMessage = "";
             }
             if (wife.getAgeAtDate(marriage) < 14) {
-                errorMessage = "Individual " + wife.getName() + " (" + wife.getId()
+                errorMessage = "ERROR: US10: Individual " + wife.getName() + " (" + wife.getId()
                         + ") was under 14 at the date of her marriage in Family " + fam.getId();
                 errors.add(errorMessage);
                 errorMessage = "";
@@ -308,7 +309,7 @@ public class FindErrors {
 
                     if (firstname1.equals(firstname2) && (birthday1.compareTo(birthday2) == 0)
                             && ((child1.getId()).compareTo(child2.getId()) != 0)) {
-                        errorMessage = "Child " + child1.getName() + " (" + child1.getId() + ") and child "
+                        errorMessage = "ERROR: US25: Child " + child1.getName() + " (" + child1.getId() + ") and child "
                                 + child2.getName() + " (" + child2.getId()
                                 + ") share the same first name and the same birthday, " + child1.getBirth();
                         errors.add(errorMessage);
