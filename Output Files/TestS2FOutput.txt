@@ -1,0 +1,8 @@
+Case 1:TestFiles/testerfam.ged
+Expected Behavior: No Errors
+Errors Found:
+
+Case 2:TestFiles/sprint2f1.ged
+Expected Behavior: 1 Error, more than 15 children
+Errors Found:
+E0: ERROR: US15: Family @F1@ has more than 15 children

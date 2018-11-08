@@ -1,0 +1,8 @@
+Case 1:TestFiles/testerfam.ged
+Expected Behavior: No Errors
+Errors Found:
+
+Case 2:TestFiles/sprint2a1.ged
+Expected Behavior: 1 Error, person over 150 years old
+Errors Found:
+E0: ERROR: US07: Individual Matt Smith (@I2@) is over 150 years old

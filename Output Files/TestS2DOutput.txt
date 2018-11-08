@@ -1,0 +1,8 @@
+Case 1:TestFiles/testerfam.ged
+Expected Behavior: No Errors
+Errors Found:
+
+Case 2:TestFiles/sprint2d1.ged
+Expected Behavior: 1 Error, marriage before 14 years old
+Errors Found:
+E0: ERROR: US10: Individual Susie Johnson (@I1@) was under 14 at the date of her marriage in Family @F1@
