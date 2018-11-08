@@ -1,0 +1,13 @@
+Case 1:TestFiles/testerfam.ged
+Expected Behavior: No Errors
+Errors Found:
+
+Case 2:TestFiles/sprint2e1.ged
+Expected Behavior: 2 Errors, siblings born too close together
+Errors Found:
+E0: ERROR: US13: Birth date of Sally Smith (@I3@) is too close to birth date of Mike Smith (@I4@) in Family @F1@
+E1: ERROR: US13: Birth date of Mike Smith (@I4@) is too close to birth date of Sally Smith (@I3@) in Family @F1@
+
+Case 2:TestFiles/sprint2e2.ged
+Expected Behavior: No Errors, siblings born within 1 day are twins
+Errors Found:

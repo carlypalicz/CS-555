@@ -1,0 +1,13 @@
+Case 1:TestFiles/testerfam.ged
+Expected Behavior: No Errors
+Errors Found:
+
+Case 2:TestFiles/sprint2c1.ged
+Expected Behavior: 1 Error, born after death of mother
+Errors Found:
+E0: ERROR: US09: Birth Date of Sally Smith (@I3@) occurs before death of Susie Johnson (@I1@)
+
+Case 3:TestFiles/sprint2c2.ged
+Expected Behavior: 1 Error, born over 9 months after death of father
+Errors Found:
+E0: ERROR: US09: Birth Date of Sam Smith (@I3@) occurs more than 9 months after death of Matt Smith (@I2@)

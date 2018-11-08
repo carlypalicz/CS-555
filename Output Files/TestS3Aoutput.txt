@@ -1,0 +1,9 @@
+Case 1:TestFiles/testerfam.ged
+Expected Behavior: No Errors
+Errors Found:
+
+Case 2:TestFiles/sprint3a1.ged
+Expected Behavior: 2 Errors, same first name in family
+Errors Found:
+E0: ERROR: US25: Child Mike Smith (@I3@) and child Mike Smith (@I4@) share the same first name and the same birthday, Sat Jan 01 00:00:00 EST 2000
+E1: ERROR: US25: Child Mike Smith (@I4@) and child Mike Smith (@I3@) share the same first name and the same birthday, Sat Jan 01 00:00:00 EST 2000

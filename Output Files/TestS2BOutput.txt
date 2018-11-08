@@ -1,0 +1,8 @@
+Expected Behavior: 1 Error, birth before marriage of parents
+Errors Found:
+E0: ERROR: US08: Birth Date of Sally Smith (@I3@) occurs before marriage of Susie Johnson (@I1@) and Matt Smith (@I2@)
+
+Case 3:TestFiles/sprint2b2.ged
+Expected Behavior: 1 Error, birth more than 9 months after divorce of parents
+Errors Found:
+        E0: ERROR: US08: Birth Date of Sally Smith (@I3@) occurs too far after the divorce of Susie Johnson (@I1@) and Matt Smith (@I2@)
