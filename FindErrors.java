@@ -51,7 +51,7 @@ public class FindErrors {
         }
     }
 
-    public static void marriageBeforeDivorce(List<String> errors, List<Family> families){
+    public static void marriageBeforeDivorce(List<String> errors, List<Family> families) {
         String errorMessage = "";
         Date marriage, divorce;
         Person husband, wife = null;
@@ -60,16 +60,16 @@ public class FindErrors {
             divorce = fam.getDivorce();
             husband = fam.getHusband();
             wife = fam.getWife();
-            if(divorce != null && marriage != null && divorce.before(marriage)){
-                errorMessage = "Divorce of "+ husband.getName() + " and " + wife.getName() + " (" + husband.getId() 
-                + " and " + wife.getId() + ") occurs before their marriage date in family " + fam.getId();
+            if (divorce != null && marriage != null && divorce.before(marriage)) {
+                errorMessage = "Divorce of " + husband.getName() + " and " + wife.getName() + " (" + husband.getId()
+                        + " and " + wife.getId() + ") occurs before their marriage date in family " + fam.getId();
                 errors.add(errorMessage);
                 errorMessage = "";
             }
         }
     }
 
-    public static void divorceBeforeDeath(List<String> errors, List<Family> families){
+    public static void divorceBeforeDeath(List<String> errors, List<Family> families) {
         Person husband, wife = null;
         Date death = null;
         String errorMessage = "";
@@ -80,7 +80,7 @@ public class FindErrors {
             marriage = fam.getMarriage();
             divorce = fam.getDivorce();
 
-            if(marriage != null && divorce != null){
+            if (marriage != null && divorce != null) {
                 death = husband.getDeath();
                 if (death != null && death.before(fam.getDivorce())) {
                     errorMessage = "Death date of " + husband.getName() + " (" + husband.getId()
@@ -207,74 +207,114 @@ public class FindErrors {
             }
         }
     }
-    public static void siblingSpacing(List<String> errors, List<Family> families){
+
+    public static void siblingSpacing(List<String> errors, List<Family> families) {
         List<Person> children = null;
         int EIGHT_MONTHS_IN_DAYS = 243;
         String errorMessage = "";
-        for(Family fam:families){
+        for (Family fam : families) {
             children = fam.getChildren();
-            for(Person child1:children){
-                for(Person child2: children){
-                    long diffInMillis = Math.abs(child1.getBirth().getTime()-child2.getBirth().getTime());
+            for (Person child1 : children) {
+                for (Person child2 : children) {
+                    long diffInMillis = Math.abs(child1.getBirth().getTime() - child2.getBirth().getTime());
                     long timeDiff = TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
-                        if(timeDiff>2 && timeDiff<EIGHT_MONTHS_IN_DAYS){
-                            errorMessage = "Birth date of " + child1.getName() + " ("+child1.getId()
-                            + ") is too close to birth date of " + child2.getName() + " ("+child2.getId() + ") in Family "+fam.getId();
-                            errors.add(errorMessage);
-                            errorMessage = "";
-                        }
+                    if (timeDiff > 2 && timeDiff < EIGHT_MONTHS_IN_DAYS) {
+                        errorMessage = "Birth date of " + child1.getName() + " (" + child1.getId()
+                                + ") is too close to birth date of " + child2.getName() + " (" + child2.getId()
+                                + ") in Family " + fam.getId();
+                        errors.add(errorMessage);
+                        errorMessage = "";
+                    }
                 }
             }
         }
     }
 
-    public static void maximumSiblings(List<String> errors, List<Family> families){
+    public static void maximumSiblings(List<String> errors, List<Family> families) {
         List<Person> children = null;
         String errorMessage = "";
-        for(Family fam: families){
+        for (Family fam : families) {
             children = fam.getChildren();
-            if(children.size()>15){
-                errorMessage = "Family "+fam.getId()+" has more than 15 children";
+            if (children.size() > 15) {
+                errorMessage = "Family " + fam.getId() + " has more than 15 children";
                 errors.add(errorMessage);
                 errorMessage = "";
             }
         }
     }
 
-    public static void LessThanHundredFifty(List<String> errors, List<Person> individuals){
+    public static void LessThanHundredFifty(List<String> errors, List<Person> individuals) {
         String errorMessage = "";
         Date currentDate = new Date();
         int age;
-        for(Person p:individuals){
-            if(p.isDead){
+        for (Person p : individuals) {
+            if (p.isDead) {
                 age = p.getAgeAtDate(p.getDeath());
-            }
-            else{
+            } else {
                 age = p.getAgeAtDate(currentDate);
             }
-            if(age>150){
-                errorMessage = "Individual "+p.getName()+" ("+p.getId()+") is over 150 years old";
+            if (age > 150) {
+                errorMessage = "Individual " + p.getName() + " (" + p.getId() + ") is over 150 years old";
                 errors.add(errorMessage);
                 errorMessage = "";
             }
         }
     }
 
-    public static void MarriageAfterFourteen(List<String> errors, List<Family> families){
+    public static void MarriageAfterFourteen(List<String> errors, List<Family> families) {
         Person husband, wife = null;
         Date marriage = null;
         String errorMessage;
-        for(Family fam: families){
+        for (Family fam : families) {
             husband = fam.getHusband();
             wife = fam.getWife();
             marriage = fam.getMarriage();
-            if(husband.getAgeAtDate(marriage)<14){
-                errorMessage = "Individual "+husband.getName()+" ("+husband.getId()+") was under 14 at the date of his marriage in Family "+fam.getId();
+            if (husband.getAgeAtDate(marriage) < 14) {
+                errorMessage = "Individual " + husband.getName() + " (" + husband.getId()
+                        + ") was under 14 at the date of his marriage in Family " + fam.getId();
                 errors.add(errorMessage);
+                errorMessage = "";
             }
-            if(wife.getAgeAtDate(marriage)<14){
-                errorMessage = "Individual "+wife.getName()+" ("+wife.getId()+") was under 14 at the date of her marriage in Family "+fam.getId();
+            if (wife.getAgeAtDate(marriage) < 14) {
+                errorMessage = "Individual " + wife.getName() + " (" + wife.getId()
+                        + ") was under 14 at the date of her marriage in Family " + fam.getId();
                 errors.add(errorMessage);
+                errorMessage = "";
+            }
+        }
+    }
+
+    /**
+     * there should not be more than one child with the same first name and birthday
+     * in a family. if there is, add to errors list
+     */
+    public static void UniqueFirstNameInFamilies(List<String> errors, List<Family> families) {
+        String errorMessage;
+        List<Person> children = null;
+
+        for (Family fam : families) {
+            children = fam.getChildren();
+            Date birthday1, birthday2 = null;
+            String firstname1, firstname2;
+
+            for (Person child1 : children) {
+                for (Person child2 : children) {
+                    birthday1 = child1.getBirth();
+                    birthday2 = child2.getBirth();
+                    int lastNameStart1 = (child1.getName()).lastIndexOf(' ');
+                    int lastNameStart2 = (child2.getName()).lastIndexOf(' ');
+                    firstname1 = child1.getName().substring(0, lastNameStart1);
+                    firstname2 = child2.getName().substring(0, lastNameStart2);
+
+                    if (firstname1.equals(firstname2) && (birthday1.compareTo(birthday2) == 0)
+                            && ((child1.getId()).compareTo(child2.getId()) != 0)) {
+                        errorMessage = "Child " + child1.getName() + " (" + child1.getId() + ") and child "
+                                + child2.getName() + " (" + child2.getId()
+                                + ") share the same first name and the same birthday, " + child1.getBirth();
+                        errors.add(errorMessage);
+                        errorMessage = "";
+                    }
+                }
             }
         }
     }
