@@ -12,7 +12,7 @@ import java.text.*;
 public class ProjectMain {
 
     public static void main(String[] args) throws Exception {
-        String fileName = "My-Family.ged";
+        String fileName = "TestFiles/sprint3a1.ged";
         List<Person> individuals = new ArrayList<Person>();
         List<Family> families = new ArrayList<Family>();
         List<Date> dates = new ArrayList<Date>(); // new
@@ -27,6 +27,11 @@ public class ProjectMain {
         FindErrors.birthBeforeDeath(errors, individuals); // new
         FindErrors.birthBeforeMarriageOfParents(errors, families); // new
         FindErrors.birthBeforeDeathOfParents(errors, families); // new
+        FindErrors.siblingSpacing(errors, families);
+        FindErrors.maximumSiblings(errors, families);
+        FindErrors.LessThanHundredFifty(errors, individuals);
+        FindErrors.MarriageAfterFourteen(errors, families);
+        FindErrors.UniqueFirstNameInFamilies(errors, families);
 
         System.out.println("Information found in " + fileName + "\n-----\n");
 

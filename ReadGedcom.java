@@ -67,10 +67,11 @@ public class ReadGedcom {
                     dateFlag = "divorce";
                 } else if (tag.equals("DATE")) {
                     currentDate = dateFormatter.parse(arguments);
-                    dates.add(currentDate); // new
-                    
+                    dates.add(currentDate);
+
                     if (dateFlag.equals("birth")) {
                         currentPerson.addBirthDate(currentDate);
+                        currentPerson.addCurrentAge(); // new in sprint 3
                     } else if (dateFlag.equals("death")) {
                         currentPerson.kill(currentDate);
                     } else if (dateFlag.equals("marriage")) {

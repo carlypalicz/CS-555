@@ -10,6 +10,7 @@ public class Person {
     Date born;
     boolean isDead;
     Date died;
+    int currentAge; // new in sprint 3
 
     public Person(String id) {
         this.id = id;
@@ -23,8 +24,16 @@ public class Person {
         born = birthday;
     }
 
-    public void kill(Date deathDate){
-        
+    /**
+     * new in sprint 3
+     */
+    public void addCurrentAge() {
+        Date today = new Date();
+        this.currentAge = this.getAgeAtDate(today);
+    }
+
+    public void kill(Date deathDate) {
+
         isDead = true;
         died = deathDate;
     }
@@ -49,8 +58,8 @@ public class Person {
         return id;
     }
 
-    public int getAgeAtDate(Date check){
-        if(check.before(born)){
+    public int getAgeAtDate(Date check) {
+        if (check.before(born)) {
             return -1;
         }
         Calendar birthdate = Calendar.getInstance(Locale.US);
@@ -58,7 +67,8 @@ public class Person {
         Calendar checkdate = getInstance(Locale.US);
         checkdate.setTime(check);
         int age = checkdate.get(YEAR) - birthdate.get(YEAR);
-        if(birthdate.get(MONTH) > checkdate.get(MONTH) || (checkdate.get(MONTH) == birthdate.get(MONTH) && birthdate.get(DATE)>checkdate.get(DATE))){
+        if (birthdate.get(MONTH) > checkdate.get(MONTH)
+                || (checkdate.get(MONTH) == birthdate.get(MONTH) && birthdate.get(DATE) > checkdate.get(DATE))) {
             age--;
         }
         return age;
@@ -69,6 +79,10 @@ public class Person {
         String output = "ID: " + id + " Name: " + name + "  Born: " + sdf.format(born);
         if (isDead) {
             output += "  Died: " + sdf.format(died);
+        }
+
+        else { // new in sprint 3
+            output += " Current Age: " + currentAge;
         }
         return output;
     }
